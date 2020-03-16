@@ -1,4 +1,3 @@
-
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -75,27 +74,25 @@ void odd_even_sort(uint32_t a[], int size)
 }
 void heapify(uint32_t arr[], int n, int i)
 {
-    int largest = i;   //наибольший =  корень
-    int l = 2 * i + 1; //левый доч элемент
-    int r = 2 * i + 2; //правый доч элемент
-    if (l < n && arr[l] > arr[largest]) //если левый доч элемент больше корня
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+    if (l < n && arr[l] > arr[largest])
         largest = l;
-    if (r < n && arr[r] > arr[largest]) //если правый доч элемент больше, чем
-                                        //самый большой элемент на данный момент
+    if (r < n && arr[r] > arr[largest])
         largest = r;
     if (largest != i) {
-        swap(&arr[i], &arr[largest]); //если самый большой элемент не был
-                                      //коренем на старте
+        swap(&arr[i], &arr[largest]);
         heapify(arr, n, largest);
     }
 }
 void heapSort(uint32_t arr[], int n)
 {
-    for (int i = n / 2 - 1; i >= 0; i--) //построение кучи
+    for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
-    for (int i = n - 1; i >= 0; i--) { //извлекаем элементы из кучи поочередно
+    for (int i = n - 1; i >= 0; i--) {
         swap(&arr[0], &arr[i]);
-        heapify(arr, i, 0); //хипи на ум куче//макс эл первый
+        heapify(arr, i, 0);
     }
 }
 int is_sorted(uint32_t* a, int n)
